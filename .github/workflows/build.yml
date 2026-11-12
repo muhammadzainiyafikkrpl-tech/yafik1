@@ -1,0 +1,23 @@
+name: Build C++ to EXE
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+
+      - name: Compile C++ menjadi EXE
+        run: g++ -static "yafik1.cpp" -o "yafik1.exe"
+
+      - name: Upload file EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: hasil-yafik1
+          path: "yafik1.exe"
